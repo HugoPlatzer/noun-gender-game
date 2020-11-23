@@ -1,0 +1,31 @@
+<html>
+<head>
+
+
+<script>
+
+function update_word() {
+    fetch("/word")
+        .then(response => response.json())
+        .then(json => set_word_ui(json)); 
+}
+
+function set_word_ui(json) {
+    let disp_article = document.querySelector("#article");
+    disp_article.textContent = json.article;
+    let disp_noun = document.querySelector("#word");
+    disp_noun.textContent = json.noun;
+}
+
+</script>
+
+</head>
+<body onload="update_word()">
+<span id="article" style="color:red;font-size:xx-large;"></span>
+<span style="margin-right:1em;"></span>
+<span id="word" style="font-size:xx-large;"></span>
+
+<br><br>
+<button id="refresh" onclick="update_word()">Refresh</button>
+</body>
+</html>
