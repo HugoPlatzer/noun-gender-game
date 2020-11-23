@@ -1,1 +1,1 @@
-gunicorn --chdir flaskapp main:app
+web: gunicorn --chdir flaskapp main:app
