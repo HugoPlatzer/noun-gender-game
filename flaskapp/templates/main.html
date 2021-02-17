@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Noun gender game</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script><!-- Bootstrap JS -->
+
+    <link rel="shortcut icon" href="/static/icons/favicon.ico" />
+</head>
+<body>
+    <div class="d-flex flex-column">
+        <div class="d-flex w-100 bg-light pl-4">
+            <div class="d-flex flex-column">
+                <div>
+                    <h1 class="display-1" style="margin-left:-0.07em;">Noun gender game</h1>
+                </div>
+                <div>by Hugo Platzer</div>
+            </div>
+        </div>
+        
+        <div class="d-flex flex-column w-100 justify-content-center pl-3">
+            <h1> Welcome, {{ current_user.displayname }}! </h1>
+            <div class="d-flex">
+                <div class="btn btn-lg btn-primary m-2" onclick="start_game();">Start game!</div>
+                <div class="btn btn-lg btn-secondary m-2" onclick="logout();">Logout</div>
+            </div>
+        </div>
+
+    </div>
+
+<script>
+    function start_game() {
+        location.href = "/game";
+    }
+    
+    function logout() {
+        location.href = "/logout";
+    }
+</script>
+</body>
+</html>
