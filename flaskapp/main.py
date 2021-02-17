@@ -11,22 +11,6 @@ import json
 def db_init():
     db = sqlite3.connect("main.db")
     db_c = db.cursor()
-    db_c.execute("CREATE TABLE IF NOT EXISTS games ("
-                "game_id TEXT PRIMARY KEY,"
-                "date TEXT NOT NULL,"
-                "num_correct INTEGER NOT NULL,"
-                "num_total INTEGER NOT NULL"
-                ");")
-    db_c.execute("CREATE TABLE IF NOT EXISTS users ("
-                "username TEXT NOT NULL,"
-                "displayname TEXT NOT NULL,"
-                "hash TEXT NOT NULL"
-                ");")
-    db_c.execute("CREATE TABLE IF NOT EXISTS config ("
-                "property TEXT NOT NULL,"
-                "value TEXT NOT NULL"
-                ");")
-    db.commit()
     return db, db_c
 
 
