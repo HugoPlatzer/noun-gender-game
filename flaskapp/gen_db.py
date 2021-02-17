@@ -24,6 +24,7 @@ db_c.execute("CREATE TABLE config ("
 
 secret_key = secrets.token_urlsafe(16)
 db_c.execute("INSERT INTO config VALUES (?, ?)", ["secret_key", secret_key])
+db_c.execute("INSERT INTO config VALUES (?, ?)", ["nwords", 10])
 db.commit()
 
 while True:

@@ -45,8 +45,8 @@ app.config["JSONIFY_PRETTYPRINT_REGULAR"] = True
 app.secret_key = load_config("secret_key")
 login_manager = LoginManager(app)
 
-game_nwords = 3
-wordlist_file = "res/wordlists/de_corr.txt"
+game_nwords = int(load_config("nwords"))
+wordlist_file = "res/wordlists/de.txt"
 words = [l.split() for l in open(wordlist_file).readlines()]
 article_choices = ["der", "die", "das"]
 hyphen_dic = Pyphen(lang="de_DE")
@@ -105,7 +105,7 @@ def page_main():
 @app.route("/game")
 @login_required
 def page_game():
-    return send_from_directory("static", "game.html")
+    return render_template("game.html", nwords=game_nwords)
 
 
 @app.route("/word")
@@ -155,13 +155,13 @@ def service_report(game_id):
         num_correct, num_total = 0, 0
     else:
         num_correct, num_total = data[0], data[1]
-    message = "{}/{} articles correct".format(num_correct, num_total)
+    message = "{}/{} Artikel richtig".format(num_correct, num_total)
     if num_correct != num_total:
-        submessage = "Mistakes:"
+        submessage = "Fehler:"
     elif num_total < game_nwords:
-        submessage = "Game aborted"
+        submessage = "Spiel abgebrochen"
     else:
-        submessage = "Good job!"
+        submessage = "Gut gemacht!"
     
     mistakes = []
     for answer in answers:

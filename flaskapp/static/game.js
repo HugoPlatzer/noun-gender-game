@@ -119,7 +119,9 @@ var button_event_dict = {};
 var audio_success;
 var audio_error;
 var words_done = 0;
-var words_total = 3;
+
+// from html template
+// var words_total = 3;
 var answers_list = [];
 var game_id;
 var data_json_stored;
