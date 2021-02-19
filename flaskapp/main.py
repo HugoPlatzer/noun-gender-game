@@ -179,7 +179,7 @@ def service_report(game_id):
         if answer["guessedArticle"] != answer["correctArticle"]:
             mistakes.append({"article": answer["correctArticle"], "word": answer["noun_hyphen"]})
     
-    if len(story_filenames) >= 1:
+    if num_correct == num_total and num_total == game_nwords and len(story_filenames) >= 1:
         story_file = story_filenames[hash(game_id) % len(story_filenames)]
     else:
         story_file = ""
