@@ -39,9 +39,14 @@
                     {% endfor %}
                 </table>
             </div>
+        {% else %}
+            {% if story_file|length %}
+                <div class="d-flex pl-3"><h4>Als Belohnung gibt es ein Bild mit Geschichte:</h4></div>
+                {% include story_file %}
+            {% endif %}
         {% endif %}
         <div class="d-flex w-100">
-            <div class="btn btn-lg btn-primary m-2" onclick="back();">Back</div>
+            <div class="btn btn-lg btn-primary m-2" onclick="back();">OK</div>
         </div>
         
     </div>

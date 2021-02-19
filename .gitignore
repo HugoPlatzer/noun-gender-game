@@ -1,5 +1,4 @@
 flaskapp/main.db
 flaskapp/__pycache__/*
 venv/*
-wordlists/*
-learn_html/*
+stuff/*

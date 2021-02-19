@@ -6,6 +6,7 @@ from pyphen import Pyphen
 import sqlite3
 from datetime import datetime
 import json
+import os
 
 
 def db_init():
@@ -22,6 +23,15 @@ def load_config(prop):
     db_c.execute("SELECT value FROM config WHERE property=?", [prop])
     data = db_c.fetchone()
     return data[0]
+
+
+def find_story_filenames():
+    fns = []
+    for fn in os.listdir("templates/stories"):
+        name, ext = os.path.splitext(fn)
+        if ext == ".html":
+            fns.append("stories/" + fn)
+    return fns
 
 
 class User:
@@ -50,6 +60,7 @@ wordlist_file = "res/wordlists/de.txt"
 words = [l.split() for l in open(wordlist_file).readlines()]
 article_choices = ["der", "die", "das"]
 hyphen_dic = Pyphen(lang="de_DE")
+story_filenames = find_story_filenames()
 
 
 @login_manager.user_loader
@@ -168,9 +179,15 @@ def service_report(game_id):
         if answer["guessedArticle"] != answer["correctArticle"]:
             mistakes.append({"article": answer["correctArticle"], "word": answer["noun_hyphen"]})
     
+    if len(story_filenames) >= 1:
+        story_file = story_filenames[hash(game_id) % len(story_filenames)]
+    else:
+        story_file = ""
+    
     return render_template("report.html",
         message=message,
         submessage=submessage,
         has_mistakes=(len(mistakes) > 0),
-        mistakes=mistakes)
+        mistakes=mistakes,
+        story_file=story_file)
     
