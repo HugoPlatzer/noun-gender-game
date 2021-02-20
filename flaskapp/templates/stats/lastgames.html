@@ -1,0 +1,35 @@
+<div class="container bg-light pt-1 rounded-lg">
+    <h4>Letzte Spiele:</h4>
+    
+    <table class="table">
+        {% if lastgames|length %}
+            <thead>
+                <tr>
+                    <th>Datum</th>
+                    <th>Ergebnis</th>
+                </tr>
+            </thead>
+                
+            <tbody>
+                {% for game in lastgames %}
+                    <tr>
+                        <td>{{ game.date }}</td>
+                        <td>
+                        {% if game.perfect %}
+                            <span class="text-success font-weight-bold">{{ game.result }}</span>
+                        {% else %}
+                            <span>{{ game.result }}</span>
+                        {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        {% else %}
+            <tbody>
+                <tr>
+                    <th>Noch keine Spiele</th>
+                </tr>
+            </tbody>
+        {% endif %}
+    </table>
+</div>

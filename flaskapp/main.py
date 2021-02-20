@@ -7,6 +7,7 @@ import sqlite3
 from datetime import datetime
 import json
 import os
+import dateutil.parser
 
 
 def db_init():
@@ -34,6 +35,28 @@ def find_story_filenames():
     return fns
 
 
+def load_story_users():
+    users = load_config("story_users")
+    return users.split(",")
+
+
+def data_lastgames():
+    db_c.execute("SELECT date, num_correct, num_total FROM games"
+        " WHERE user=?"
+        " ORDER BY date DESC"
+        " LIMIT 3",
+        [current_user.get_id()])
+    rows = db_c.fetchall()
+    games = []
+    for date, num_correct, num_total in rows:
+        date_p = dateutil.parser.isoparse(date)
+        date_h = date_p.strftime("%d %b %Y %H:%M")
+        perfect = (num_correct == num_total and num_total == game_nwords)
+        result_s = "{}/{}".format(num_correct, num_total)
+        games.append({"date": date_h, "perfect": perfect, "result": result_s})
+    return games
+
+
 class User:
     def __init__(self, username, displayname, pwd_hash):
         self.username = username
@@ -49,6 +72,7 @@ class User:
     def get_id(self):
         return self.username
 
+
 db, db_c = db_init()
 app = Flask(__name__)
 app.config["JSONIFY_PRETTYPRINT_REGULAR"] = True
@@ -60,6 +84,7 @@ wordlist_file = "res/wordlists/de.txt"
 words = [l.split() for l in open(wordlist_file).readlines()]
 article_choices = ["der", "die", "das"]
 hyphen_dic = Pyphen(lang="de_DE")
+story_users = load_story_users()
 story_filenames = find_story_filenames()
 
 
@@ -110,7 +135,7 @@ def page_root():
 @app.route("/main")
 @login_required
 def page_main():
-    return render_template("main.html")
+    return render_template("main.html", lastgames=data_lastgames())
 
 
 @app.route("/game")
@@ -141,7 +166,8 @@ def service_word_result():
         old_correct = 0
         old_total =  0
         date = datetime.now().isoformat()
-        db_c.execute("INSERT INTO games VALUES (?, ?, ?, ?)", [game_id, date, 0, 0])
+        db_c.execute("INSERT INTO games VALUES (?, ?, ?, ?, ?)",
+            [game_id, current_user.get_id(), date, 0, 0])
     else:
         old_correct = data[0]
         old_total = data[1]
@@ -179,7 +205,10 @@ def service_report(game_id):
         if answer["guessedArticle"] != answer["correctArticle"]:
             mistakes.append({"article": answer["correctArticle"], "word": answer["noun_hyphen"]})
     
-    if num_correct == num_total and num_total == game_nwords and len(story_filenames) >= 1:
+    if (    current_user.get_id() in story_users
+            and num_correct == num_total
+            and num_total == game_nwords
+            and len(story_filenames) >= 1):
         story_file = story_filenames[hash(game_id) % len(story_filenames)]
     else:
         story_file = ""

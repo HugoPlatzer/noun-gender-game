@@ -8,6 +8,7 @@ db_c = db.cursor()
 
 db_c.execute("CREATE TABLE games ("
             "game_id TEXT PRIMARY KEY,"
+            "user TEXT NOT NULL,"
             "date TEXT NOT NULL,"
             "num_correct INTEGER NOT NULL,"
             "num_total INTEGER NOT NULL"
@@ -24,8 +25,6 @@ db_c.execute("CREATE TABLE config ("
 
 secret_key = secrets.token_urlsafe(16)
 db_c.execute("INSERT INTO config VALUES (?, ?)", ["secret_key", secret_key])
-db_c.execute("INSERT INTO config VALUES (?, ?)", ["nwords", 10])
-db.commit()
 
 while True:
     username = input("Username (type exit to exit):")
@@ -35,5 +34,12 @@ while True:
     password = input("Password:")
     pwd_hash = generate_password_hash(password)
     db_c.execute("INSERT INTO users VALUES (?, ?, ?)", [username, displayname, pwd_hash])
-    db.commit()
-    print("User {} added.".format(username))
+
+
+nwords = input("Words per game:")
+db_c.execute("INSERT INTO config VALUES (?, ?)", ["nwords", nwords])
+
+story_users = input("Users shown a story (separated by ,):")
+db_c.execute("INSERT INTO config VALUES (?, ?)", ["story_users", story_users])
+
+db.commit()
