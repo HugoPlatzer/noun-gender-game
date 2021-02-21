@@ -60,6 +60,10 @@ def plot_data_all(dates, scores, game_nwords):
     plt.scatter(dates, scores, color="blue", label="Spiel")
     plt.plot(dates_ma, scores_ma, color="orange", label="Mittel letzte {} Spiele".format(windowSize))
     plt.yticks(np.arange(0, game_nwords + 1))
+    if len(dates) == 0:
+        xmin = matplotlib.dates.date2num(datetime.now() - timedelta(days=1))
+        xmax = matplotlib.dates.date2num(datetime.now() + timedelta(hours=1))
+        plt.xlim(xmin, xmax)
     plt.ylim(-0.1, game_nwords + 0.1)
     plt.grid()
     plt.legend()
