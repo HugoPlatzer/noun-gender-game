@@ -55,6 +55,13 @@
     function back() {
         location.href = "/";
     }
+    
+    $(document).ready(function() {
+        var audio_flawless = new Audio("/static/sounds/game_over.mp3");
+        {% if flawless %}
+            audio_flawless.play();
+        {% endif %}
+    });
 </script>
 </body>
 </html>

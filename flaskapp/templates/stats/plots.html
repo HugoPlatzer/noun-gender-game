@@ -1,0 +1,19 @@
+<ul class="nav nav-tabs" id="plotTab">
+    <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#plotAll">Gesamt</a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#plotWeek">Letzte Woche</a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#plotMonth">Letzter Monat</a>
+    </li>
+</ul>
+
+<div class="tab-content" id="plotTabContent">
+    <div class="tab-pane fade show active" id="plotAll">{{ plotAll|safe }}</div>
+    <div class="tab-pane fade" id="plotWeek">{{ plotWeek|safe }}</div>
+    <div class="tab-pane fade" id="plotMonth">{{ plotMonth|safe }}</div>
+</div>

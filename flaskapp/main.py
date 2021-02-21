@@ -9,6 +9,8 @@ import json
 import os
 import dateutil.parser
 
+import plots
+
 
 def db_init():
     db = sqlite3.connect("main.db")
@@ -135,7 +137,12 @@ def page_root():
 @app.route("/main")
 @login_required
 def page_main():
-    return render_template("main.html", lastgames=data_lastgames())
+    return render_template("main.html",
+    lastgames=data_lastgames(),
+    plotAll=plots.get_plot_all(db_c, game_nwords, current_user.get_id()),
+    plotWeek=plots.get_plot_week(db_c, game_nwords, current_user.get_id()),
+    plotMonth=plots.get_plot_month(db_c, game_nwords, current_user.get_id())
+    )
 
 
 @app.route("/game")
@@ -213,10 +220,13 @@ def service_report(game_id):
     else:
         story_file = ""
     
+    is_flawless = (num_correct == num_total and num_total == game_nwords)
+    
     return render_template("report.html",
         message=message,
         submessage=submessage,
         has_mistakes=(len(mistakes) > 0),
+        flawless=is_flawless,
         mistakes=mistakes,
         story_file=story_file)
     
