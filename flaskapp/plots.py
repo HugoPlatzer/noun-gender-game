@@ -162,4 +162,4 @@ if __name__ == "__main__":
     game_nwords = 3
     # ~ data = fetch_data_all(db_c, 3, "test")
     # ~ print(data)
-    print(get_plot_all(db_c, "test"))
+    print(get_plot_all(db_c, game_nwords, "test"))
