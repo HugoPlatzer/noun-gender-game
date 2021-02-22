@@ -23,7 +23,10 @@ function init_ui() {
 
 function exit_game() {
     var report_url = "/report/" + game_id;
-    $.redirect(report_url, {"data": JSON.stringify(answers_list)});
+    $.post(report_url, {"data": JSON.stringify(answers_list)})
+        .done(function(data) {
+            $("body").html(data);
+        });
 }
 
 function confirm_exit_game() {
