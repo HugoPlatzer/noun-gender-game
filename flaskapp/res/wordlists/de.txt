@@ -31,10 +31,8 @@ die Ampel
 der Anfang
 die Anforderung
 das Angebot
-der Angestellte
 die Angewohnheit
 der Angriff
-die Angsestellte
 die Angst
 der Anhänger
 die Ankunft
@@ -69,7 +67,6 @@ das Ass
 der Assistent
 der Ast
 der Atem
-die Attitüde
 die Auffahrt
 die Aufgabe
 die Aufmerksamkeit
@@ -110,7 +107,6 @@ die Band
 die Bank
 die Bar
 der Barkeeper
-die Barmherzigkeit
 der Bart
 der Baseball
 der Basketball
@@ -180,9 +176,7 @@ der Bischof
 der Biss
 die Blase
 das Blatt
-das Blaue
 der Bleistift
-die Blendung
 der Blick
 der Blitz
 der Block
@@ -219,7 +213,6 @@ der Busch
 die Butter
 der Bäcker
 der Bär
-das Böse
 der Büffel
 das Bügeleisen
 die Bühne
@@ -234,10 +227,9 @@ der Champagner
 die Chance
 das Chaos
 der Charakter
-der Charm
+der Charme
 der Chef
 die Chefin
-das China
 der Chip
 der Chor
 der Club
@@ -255,18 +247,16 @@ der Dampf
 der Dank
 die Datei
 die Daten
-der Datensatz
+der Datenschutz
 das Datum
 der Daumen
 die Decke
 der Deckel
-der Dekan
 das Denken
 die Depression
 das Design
 das Detail
 der Detektiv
-der Deutsche
 der Dezember
 das Diagramm
 der Diamant
@@ -321,7 +311,7 @@ die Eile
 der Eimer
 der Eindruck
 der Eingang
-das Eingeweide
+die Eingeweide
 die Einheit
 der Einkauf
 die Einkaufshalle
@@ -330,13 +320,11 @@ die Einrichtung
 der Einsatz
 die Einstellung
 der Eintritt
-der Einzelne
 das Eis
 die Eisenbahn
 der Elefant
 das Element
 das Elend
-der Elf
 der Ellbogen
 die Eltern
 der Elternteil
@@ -364,7 +352,6 @@ die Erlaubnis
 das Erlebnis
 die Ermittlung
 die Erscheinung
-der Erwachsene
 der Erzähler
 die Eröffnung
 der Esel
@@ -389,7 +376,6 @@ die Falte
 die Familie
 der Fan
 die Fantasie
-das Farbband
 die Farbe
 die Faust
 der Favorit
@@ -403,7 +389,7 @@ der Feiertag
 der Feind
 das Feld
 das Fell
-der Fels
+der Felsen
 das Fenster
 die Ferien
 das Fernsehen
@@ -449,6 +435,7 @@ der Fortschritt
 das Foto
 der Fotograf
 die Fotografie
+das Fotoshooting
 die Fracht
 die Frage
 das Fragment
@@ -457,7 +444,6 @@ die Frau
 die Freiheit
 der Freitag
 die Freizeit
-der Fremde
 die Freude
 der Freund
 die Freundin
@@ -485,7 +471,7 @@ der Führer
 die Führung
 die Füllfeder
 die Gabel
-die Gallerie
+die Galerie
 der Gang
 die Gans
 das Ganze
@@ -509,7 +495,6 @@ die Geduld
 das Gedächtnis
 die Gefahr
 der Gefangene
-das Gefolge
 das Gefängnis
 das Gefäß
 das Gefühl
@@ -598,7 +583,6 @@ das Grün
 der Gummi
 die Gunst
 der Gurt
-das Gute
 das Gänseblümchen
 der Gärtner
 der Gürtel
@@ -635,7 +619,6 @@ das Haustier
 die Haut
 die Hecke
 das Heft
-der Heilige
 die Heizung
 der Held
 der Helm
@@ -732,7 +715,6 @@ das Kabel
 das Kabinett
 der Kaffee
 der Kaiser
-die Kajüte
 das Kalb
 der Kalender
 die Kamera
@@ -844,7 +826,7 @@ das Kreuz
 die Kreuzung
 der Krieg
 der Krieger
-der Kriminelle
+die Kriminalität
 die Krise
 der Kristall
 die Krone
@@ -934,9 +916,7 @@ der Lkw
 das Loch
 die Locke
 der Lohn
-der Lorbeer
 die Luft
-die Luke
 die Lunge
 das Lächeln
 die Länge
@@ -951,7 +931,7 @@ die Magie
 die Mahlzeit
 der Mai
 der Mais
-das Make-up
+das Makeup
 der Maler
 der Mangel
 der Mann
@@ -1197,7 +1177,6 @@ die Puppe
 das Quadrat
 die Qualität
 die Quelle
-der Rabbiner
 das Rad
 das Radio
 der Rahmen
@@ -1236,7 +1215,6 @@ der Reifen
 die Reihe
 der Reis
 die Reise
-der Reisende
 der Reißverschluss
 die Religion
 das Rennen
@@ -1281,6 +1259,7 @@ der Rücken
 die Rückkehr
 die Rücksicht
 die Rüstung
+der Saal
 die Saat
 der Sack
 der Saft
@@ -1291,7 +1270,7 @@ die Sammlung
 der Samstag
 der Samt
 der Sand
-die Sandale
+die Sandalen
 das Sandwich
 der Sarg
 der Satellit
@@ -1365,7 +1344,7 @@ der Schuppen
 der Schuss
 der Schutz
 der Schwanz
-die Schwarz
+das Schwarz
 der Schweif
 das Schwein
 der Schweiß
@@ -1378,7 +1357,7 @@ das Schwimmen
 die Schwäche
 der Schädel
 die Schönheit
-die Schüler
+der Schüler
 die Schürze
 die Schüssel
 der See
@@ -1406,7 +1385,6 @@ die Serviette
 der Sessel
 der Seufzer
 der Sheriff
-das Shooting
 die Show
 die Sicherheit
 die Sicht
@@ -1451,6 +1429,7 @@ die Spitze
 der Spitzer
 der Sport
 die Sprache
+die Spritze
 die Spur
 der Staat
 die Stadt
@@ -1470,7 +1449,6 @@ der Stau
 der Staub
 das Steak
 der Stein
-der Stellvertretende
 das Sterben
 der Stern
 das Steuer
@@ -1547,7 +1525,6 @@ die Taschenlampe
 das Taschentuch
 die Tasse
 die Tatsache
-der Tau
 die Taube
 das Taxi
 das Team
@@ -1594,8 +1571,7 @@ die Tragödie
 der Trainer
 das Training
 die Trauer
-der Traum
-die Traurigkeit
+der Traumdie
 das Treffen
 die Treppe
 das Treppenhaus
@@ -1613,6 +1589,7 @@ das Tuch
 der Tunnel
 der Turm
 der Typ
+der Tänzer
 die Tänzerin
 die Tätowierung
 die Tür
@@ -1696,7 +1673,6 @@ das Volk
 das Volumen
 der Vorfahre
 der Vorfall
-die Vorhalle
 das Vorhandensein
 der Vorhang
 der Vormarsch
@@ -1710,7 +1686,6 @@ die Waffe
 der Wagen
 die Wahl
 die Wahrheit
-die Waise
 der Wal
 der Wald
 die Wand
@@ -1789,6 +1764,7 @@ der Zaun
 der Zebrastreifen
 die Zehe
 die Zeichnung
+der Zeiger
 die Zeit
 die Zeitschrift
 die Zeitung
@@ -1800,9 +1776,8 @@ das Zeug
 der Zeuge
 das Zeugnis
 die Ziege
-die Ziegel
+der Ziegel
 das Ziel
-das Ziffernblatt
 die Zigarette
 die Zigarre
 das Zimmer
@@ -1824,7 +1799,6 @@ die Zuversicht
 der Zweifel
 der Zweig
 die Zwiebel
-das Zwielicht
 der Zwilling
 die Zwillinge
 der Zähler

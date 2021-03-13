@@ -21,27 +21,11 @@ def moving_average(x, w):
     return np.convolve(x, np.ones(w), 'valid') / w
 
 
-def fetch_data(db_c, game_nwords, username, filter=None):
-    if filter == "week":
-        weekago = (datetime.now() - timedelta(days=7)).isoformat()
-        db_c.execute("SELECT date, num_correct FROM games"
-            " WHERE user=? AND num_total=?"
-            " AND date>=?"
-            " ORDER BY date ASC",
-            [username, game_nwords, weekago])
-        
-    elif filter == "month":
-        monthago = (datetime.now() - timedelta(days=30)).isoformat()
-        db_c.execute("SELECT date, num_correct FROM games"
-            " WHERE user=? AND num_total=?"
-            " AND date>=?"
-            " ORDER BY date ASC",
-            [username, game_nwords, monthago])
-    else:
-        db_c.execute("SELECT date, num_correct FROM games"
-            " WHERE user=? AND num_total=?"
-            " ORDER BY date ASC",
-            [username, game_nwords])
+def fetch_data(db_c, game_nwords, username):
+    db_c.execute("SELECT date, num_correct FROM games"
+        " WHERE user=? AND num_total=?"
+        " ORDER BY date ASC",
+        [username, game_nwords])
     rows = db_c.fetchall()
     dates, scores = [], []
     for date, num_correct in rows:
@@ -92,13 +76,13 @@ def format_weekday(mpldate, pos=None):
 def plot_data_week(dates, scores, game_nwords):
     dates_ma = dates[(windowSize-1):]
     scores_ma = moving_average(scores, windowSize)
-    plt.scatter(dates, scores, color="blue", label="Spiel")
-    plt.plot(dates_ma, scores_ma, color="orange", label="Mittel letzte {} Spiele".format(windowSize))
-    plt.yticks(np.arange(0, game_nwords + 1))
     xmin = matplotlib.dates.date2num(datetime.now() - timedelta(days=7))
     xmax = matplotlib.dates.date2num(datetime.now() + timedelta(hours=1))
     plt.xlim(xmin, xmax)
     plt.ylim(-0.1, game_nwords + 0.1)
+    plt.yticks(np.arange(0, game_nwords + 1))
+    plt.scatter(dates, scores, color="blue", label="Spiel")
+    plt.plot(dates_ma, scores_ma, color="orange", label="Mittel letzte {} Spiele".format(windowSize))
     plt.grid()
     plt.legend()
     plt.gca().xaxis.set_major_locator(matplotlib.dates.WeekdayLocator(byweekday=(MO, TU, WE, TH, FR, SA, SU)))
@@ -115,13 +99,13 @@ def plot_data_week(dates, scores, game_nwords):
 def plot_data_month(dates, scores, game_nwords):
     dates_ma = dates[(windowSize-1):]
     scores_ma = moving_average(scores, windowSize)
-    plt.scatter(dates, scores, color="blue", label="Spiel")
-    plt.plot(dates_ma, scores_ma, color="orange", label="Mittel letzte {} Spiele".format(windowSize))
-    plt.yticks(np.arange(0, game_nwords + 1))
     xmin = matplotlib.dates.date2num(datetime.now() - timedelta(days=30))
     xmax = matplotlib.dates.date2num(datetime.now() + timedelta(hours=8))
     plt.xlim(xmin, xmax)
     plt.ylim(-0.1, game_nwords + 0.1)
+    plt.yticks(np.arange(0, game_nwords + 1))
+    plt.scatter(dates, scores, color="blue", label="Spiel")
+    plt.plot(dates_ma, scores_ma, color="orange", label="Mittel letzte {} Spiele".format(windowSize))
     plt.grid()
     plt.legend()
     plt.gca().xaxis.set_major_locator(matplotlib.dates.DayLocator(bymonthday=range(1, 32)))
@@ -153,14 +137,14 @@ def get_plot_all(db_c, game_nwords, username):
 
 def get_plot_week(db_c, game_nwords, username):
     plt.clf()
-    data = fetch_data(db_c, game_nwords, username, filter="week")
+    data = fetch_data(db_c, game_nwords, username)
     plot_data_week(*data, game_nwords)
     return plot_as_base64()
 
 
 def get_plot_month(db_c, game_nwords, username):
     plt.clf()
-    data = fetch_data(db_c, game_nwords, username, filter="month")
+    data = fetch_data(db_c, game_nwords, username)
     plot_data_month(*data, game_nwords)
     return plot_as_base64()
 
