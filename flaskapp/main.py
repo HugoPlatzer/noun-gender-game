@@ -8,6 +8,7 @@ from datetime import datetime
 import json
 import os
 import dateutil.parser
+import logging
 
 import plots
 
@@ -75,6 +76,11 @@ class User:
         return self.username
 
 
+import logging
+logging.basicConfig(filename="log.txt",
+    level=logging.INFO,
+    format="%(asctime)s %(message)s")
+
 db, db_c = db_init()
 app = Flask(__name__)
 app.config["JSONIFY_PRETTYPRINT_REGULAR"] = True
@@ -106,9 +112,12 @@ def unauthorized_callback():
 
 @app.route("/login", methods=["GET", "POST"])
 def page_login():
+    logging.info("LOGIN " + str(request.remote_addr))
     if current_user.is_authenticated:
+        logging.info("isauth")
         return redirect("/")
     if request.method == "GET":
+        logging.info("get")
         return send_from_directory("static", "login.html")
     else:
         username = request.form.get("username")
@@ -116,14 +125,17 @@ def page_login():
         user = load_user(username)
         if user is not None and user.check_password(password):
             login_user(user, remember=True)
+            logging.info("successful for user " + str(user.get_id()))
             return redirect("/")
         else:
+            logging.info("unsuccessful")
             return redirect("/login")
 
 
 @app.route("/logout")
 @login_required
 def page_logout():
+    logging.info("LOGOUT " + str(request.remote_addr))
     logout_user()
     return redirect("/login")
 
@@ -137,6 +149,7 @@ def page_root():
 @app.route("/main")
 @login_required
 def page_main():
+    logging.info("MAIN " + str(request.remote_addr))
     return render_template("main.html",
     lastgames=data_lastgames(),
     plotAll=plots.get_plot_all(db_c, game_nwords, current_user.get_id()),
@@ -148,6 +161,7 @@ def page_main():
 @app.route("/game")
 @login_required
 def page_game():
+    logging.info("GAME " + str(request.remote_addr))
     return render_template("game.html", nwords=game_nwords)
 
 
@@ -155,6 +169,7 @@ def page_game():
 @login_required
 def service_word():
     article, noun = choice(words)
+    logging.info("WORD " + str(request.remote_addr) + " " + article + " " + noun)
     return jsonify({"article_choices" : article_choices,
                     "article" : article, 
                     "noun" : noun,
@@ -167,6 +182,7 @@ def service_word():
 def service_word_result():
     game_id = request.json["gameId"]
     is_correct = request.json["correct"]
+    logging.info("WORDRESULT " + str(request.remote_addr) + " " + game_id + " " + str(is_correct))
     db_c.execute("SELECT num_correct, num_total from games WHERE game_id=?", [game_id])
     data = db_c.fetchone()
     if data is None:
@@ -192,6 +208,9 @@ def service_word_result():
 @login_required
 def service_report(game_id):
     answers = json.loads(request.form.get("data"))
+    
+    logging.info("REPORT " + str(request.remote_addr) + " " + str(game_id))
+    logging.info("answers: " + str(answers))
     
     db_c.execute("SELECT num_correct, num_total from games WHERE game_id=?", [game_id])
     data = db_c.fetchone()
@@ -221,6 +240,7 @@ def service_report(game_id):
         story_file = ""
     
     is_flawless = (num_correct == num_total and num_total == game_nwords)
+    logging.info("flawless: " + str(is_flawless) + ", story file: " + story_file)
     
     return render_template("report.html",
         message=message,
